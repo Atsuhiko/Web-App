@@ -1,0 +1,14 @@
+<Windows>
+set FLASK_APP=hello.py
+
+flask run
+
+or
+
+python -m flask run
+
+別のマシンからアクセスする場合
+
+flask run --host=0.0.0.0
+
+ipconfig でホストのアドレスを参照する
