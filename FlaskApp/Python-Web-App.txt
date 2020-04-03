@@ -1,0 +1,12 @@
+・コマンドプロンプトを起動する
+・cd でapp.pyがあるフォルダにディレクトリを移動
+
+(1) python app.py --> サーバーからindex.html を起動
+
+(2) pytohn app2.py --> 	リクエストハンドラー
+			サーバーから動的にWebアプリを表示
+
+(3) python app3.py --> ハンドラ内でHTMLファイルを読み込む
+
+(4) python app4.py --> 	動的にHTML内に整形済みテキストを
+			変数値で埋め込む
