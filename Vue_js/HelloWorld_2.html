@@ -1,0 +1,22 @@
+<script
+src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
+</script>
+
+<div id="app">
+  <p>{{message}}</p>    <!-- {{}x}でVueのxを受け取る -->
+  <button v-on:click="reverseMessage">メッセージを反転</button>
+</div> 
+
+<script>
+new Vue({
+    el: '#app',   // # で id と関係づける
+    data: {
+  	    message: 'HelloWorld! This is the first Vue.js app.'
+    },
+    methods: {
+        reverseMessage: function() {
+            this.message = this.message.split('').reverse().join('')
+        }
+    }
+})
+</script>
