@@ -7,7 +7,8 @@ class MyServerHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response_only(200)
         self.end_headers()
-        body = index.format(title='Formatted Text', content='整形済みのテキストです')
+        # 以下index2.html中の｛｝で囲んだところに文字列を送くる
+        body = index.format(title='Formatted Text', content='サーバーから送られたテキスト')
         self.wfile.write(body.encode('utf-8'))
         return
 
