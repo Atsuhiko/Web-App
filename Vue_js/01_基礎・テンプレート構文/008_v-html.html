@@ -1,0 +1,22 @@
+<script
+src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
+</script>
+<!-- <script src="vue.js"></script> ローカルで vue.js を用いる場合 -->
+
+<div id="app">
+  <p>{{ html }}</p>           <!-- html は認識されない -->
+  <dic v-html="html"></dic>  <!-- html として認識されて表示する -->
+</div> 
+
+<script>
+new Vue({
+    el: '#app',   // # で id と関係づける
+    data: {
+  	    html: '<h1>h1です</h1>'
+        // v-html は「クロスサイトスクリプティング」という漸弱k製がある
+        // https://cybersecurity-jp.com/security-measures/18427
+        // v-html で html を引用するときには、絶対にユーザーから取得した情報を使ってはいけない
+        // 引用する html に悪意のあるコードを入れられる可能性があるため
+  }
+})
+</script>
