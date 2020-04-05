@@ -5,7 +5,7 @@ src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
 
 <div id="app">
   <p>{{ html }}</p>           <!-- html は認識されない -->
-  <dic v-html="html"></dic>  <!-- html として認識されて表示する -->
+  <div v-html="html"></div>  <!-- html として認識されて表示する -->
 </div> 
 
 <script>
