@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <title>インデックス</title>
+    <meata charset="utf-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> <!-- Vue.js を読み込む -->
+</head>
+
+<div id="app">
+    <h1>Webアプリ研究会へ</h1>
+    <p>{{message}}</p>    <!-- {{x}}でVueのxを受け取る -->
+    <button v-on:click="reverseMessage">メッセージを反転</button>
+</div> 
+
+<script>
+    new Vue({
+        el: '#app',   // # で id と関係づける
+        data: {
+  	        message: 'きょうは初めてのWeb会議です'
+        },
+        methods: {
+            reverseMessage: function() {
+            this.message = this.message.split('').reverse().join('')
+            }
+        }
+    })
+</script>
+
+</html>
