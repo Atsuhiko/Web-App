@@ -1,0 +1,24 @@
+<script
+src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
+</script>
+<!-- <script src="vue.js"></script> ローカルで vue.js を用いる場合 -->
+
+<div id="app">
+    <p><a v-bind:[attribute]="url">Yahoo</a></p> <!-- [] で attribute を引用 -->
+    <p><a v-bind="amazonObject">Amazon</a></p>
+    <!-- Chromeで右クリックして検証を選び出力されたHTMLをチェックせよ -->
+</div> 
+
+<script>
+new Vue({
+    el: '#app',   // # で id と関係づける
+    data: {
+  	    url: 'https://yahoo.co.jp',
+        attribute: 'href',
+        amazonObject: {   // Object の定義
+            href: 'https://amazon.co.jp',
+            id: 'Web-app_group'
+        }
+  }
+})
+</script>
