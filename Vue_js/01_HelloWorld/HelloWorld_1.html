@@ -1,0 +1,19 @@
+<script
+src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
+</script>
+<!-- <script src="vue.js"></script> ローカルで vue.js を用いる場合 -->
+
+<div id="app">
+  <p>
+  {{message}}    <!-- {{}x}でVueのxを受け取る -->
+  </p>
+</div> 
+
+<script>
+new Vue({
+    el: '#app',   // # で id と関係づける
+    data: {
+  	    message: 'HelloWorld! This is the first Vue.js app.'
+  }
+})
+</script>
