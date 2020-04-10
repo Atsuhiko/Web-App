@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>新規分析</h1>
+<form action="{{ url_for('analysis') }}" method="post">
+ 
+    <label>タイトル</label>
+    <input class="form-control" type="text" size="30" name="title">
+    <label>分析データ</label>
+    <textarea class="form-control" name="data" rows="5"></textarea>
+    <input class="btn btn-primary" type="submit" value="送信">
+ 
+</form>
+{% endblock %}

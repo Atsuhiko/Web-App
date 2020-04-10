@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>結果参照</h1>
+ 
+<h3>{{ result.id }}:{{ result.title|safe}}</h3>
+<p>{{ result.created }}</p>
+<div class="row">
+    <img src="{{ url_for('static', filename=result.img) }}">
+</div>
+ 
+<div class="row">
+    <textarea class="form-control" name="data" rows="5">{{result.data}}</textarea>
+</div>
+ 
+<br><br>
+{% endblock %}
