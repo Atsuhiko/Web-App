@@ -1,0 +1,14 @@
+Anaconda Navigator の仮想環境 flask のターミナルを起動
+
+井伊の環境：
+cd desktop\Web-App\FlaskApp
+
+＜DBの初期化＞
+set FLASK_APP=flaskr
+set FLASK_ENV=development
+flask init-db
+
+＜起動＞
+set FLASK_APP=flaskr
+set FLASK_ENV=development
+flask run
