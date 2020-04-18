@@ -12,23 +12,22 @@
         <p>{{ sayHi() }}</p>
         <h1>柿ピーの日記へようこそ</h1>
         <p>メッセージを残してください！</p>
-        <p>{{ message }}</p>
-        <p>{{ number }}</p>
+        <ul>
+            <li v-for="item in items">
+                {{ item }}
+            </li>
+        </ul>
+        <form v-on:submit.prevent = "addItem(input)">
+            <input type="text" v-model="input">
+            <button type="submit">追加</button>
+        </form>
+
+        <p>{{ "私の名前は" + message + "です"}}</p>
         <input type="text" v-model="message">
+
+        <p>{{ "大文字：" + upperMessage }}</p>
     </div>
-    <script>
-        new Vue({
-            el: '#app',
-            data: {
-                message: 'aaa',
-                number: 2
-            },
-            methods: {
-                sayHi: function(){
-                    return 'こんにちは！';
-                }
-            }
-        })
-    </script>
+   
+    <script src="kakino011.js"></script>
 </body>
 
