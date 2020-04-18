@@ -11,6 +11,9 @@ new Vue({
     methods: {
         addItem: function(item) {
             this.items.push(item)
+        },
+        sayHi: function(){
+            return "こんにちは！";
         }
     },
     computed: {
