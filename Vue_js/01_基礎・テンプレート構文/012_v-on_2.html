@@ -1,0 +1,24 @@
+<script
+src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
+</script>
+<!-- <script src="vue.js"></script> ローカルで vue.js を用いる場合 -->
+
+<div id="app">
+    <p>{{ number }}回クリックされています</p>
+    <!-- 関数を使用。こちらの書き方の方がよい -->
+    <button v-on:click="countUp">カウントアップ</button>
+</div> 
+
+<script>
+new Vue({
+    el: '#app',   // # で id と関係づける
+    data: {
+  	    number: 0
+    },
+    methods: {
+        countUp: function() {
+            this.number += 1
+        }
+    }
+})
+</script>
