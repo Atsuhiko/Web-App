@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="image" accept="image/png, image/jpeg">
+    <button type="submit">submit</button>
+</form>
+
+{% if images %}
+{% for path in images %}
+<div>
+    <img src="images/{{ path }}" style="margin-top: 10px; vertical-align: bottom; width: 200px;">
+    {{ path }}
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}
