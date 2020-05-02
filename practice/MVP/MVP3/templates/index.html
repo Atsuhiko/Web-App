@@ -9,15 +9,17 @@
 
 <header>ファイルを選択して送信してください</header><br>
 <body>
-<!-- <form action = "./" method = "POST" enctype = "multipart/form-data">
+<form action = "./" method = "POST" enctype = "multipart/form-data">
     <input type="file" name="image" accept="image/png, image/jpeg">
     <input type = "submit"/>
-</form> -->
+</form>
 
-<img src="./images/tmp.jpg" alt="tmp">
+<!-- <hr>
+<img src="file:///C:/Users/iiats/Desktop/Web-App/practice/MVP/MVP3/images/cat_20200501165146.jpg" alt="tmp">
+<img src="./images/cat_20200501165146.jpg" alt="tmp"> -->
 
 {% if prediction %}
-
+<hr>
 <img src="./images/{{ filepath }}" style="margin-top: 10px; vertical-align: bottom; width: 200px"><br>
 <hr>
 予測結果: {{ prediction }}<br>
