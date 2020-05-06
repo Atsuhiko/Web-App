@@ -10,7 +10,6 @@ import sqlite3
 import numpy as np
 # import pandas as pd
 from datetime import datetime
-import os
 from tensorflow.keras.preprocessing.image import load_img
 from tensorflow.keras.models import load_model
 
