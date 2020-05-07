@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/table.css">
+
+    <!-- <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-grid.css.map">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-reboot.css"> -->
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='style.css') }}"> -->
+    <title>Dog or Cat ?</title>
+    <style>
+    h1 {
+            color: #326693;			/* 見出しテキストの色を指定する */
+            padding-left:10px;		/* ボックス内左側の余白を指定する */
+            border-left: 10px solid #31a9ee;	/* ボーダー左側のスタイルを指定する */
+            border-bottom: 1px dashed #31a9ee; 	/* ボーダー下部のスタイルを指定する */
+        }
+    </style>
+</head>
+
+<br>
+<div style="text-align:center;">
+<font size="7">
+<header><b>Dog & Cat Classifier</b></header>
+</font>
+</div>
+
+<body>
+    {% block content %}{% endblock %}
+</body>
+
+</html>

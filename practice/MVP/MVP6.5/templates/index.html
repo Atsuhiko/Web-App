@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div style="text-align:center;">
+<font size="5">
+ファイルを選択して送信してください
+</font>
+<hr>
+
+<form action = "./" method = "POST" enctype = "multipart/form-data">
+    <input type="file" name="image" accept="image/png, image/jpeg">
+    <input type = "submit"/>
+</form>
+
+{% if prediction %}
+<hr>
+<img src="./images/{{ filepath }}" style="margin-top: 10px; vertical-align: bottom; width: 300px"><br>
+<hr>
+<font size="4"><b>予測結果: {{ prediction }}</b></font><br>
+<font size="3">
+File: {{ filepath }}<br>
+<!-- Save path: {{ save_path }}<br> -->
+Dog: {{ dog }}<br>
+Cat: {{ cat }}<br><br>
+</font>
+<!-- <hr> -->
+
+{% endif %}
+
+{% if results %}
+
+<font size="1">
+<!-- <table border="1" align="center" width200> -->
+<table class="sample">
+    <tr>
+        <th class="wide">id</th>
+        <th>filepath</th>
+        <th class="wide">prediction</th>
+        <th>dog</th>
+        <th>cat</th>
+    </tr>
+    {% for result in results %}
+    <tr>
+        <td>{{ result.id }}</td>
+        <td>{{ result.filepath}}</td>
+        <td>{{ result.prediction }}</td>
+        <td>{{ result.dog}}</td>
+        <td>{{ result.cat }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<!-- </font> -->
+<br>
+<hr>
+
+{% endif %}
+
+</div>
+
+{% endblock %}
