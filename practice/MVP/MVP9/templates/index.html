@@ -1,0 +1,96 @@
+<!-- app.py で Customize Directive -->
+<!-- https://www.subarunari.com/entry/2017/09/30/003944 -->
+<% extends "base.html" %>
+<% block content %>
+
+<div style="text-align:center;">
+<font size="5">
+ファイルを選択して送信してください
+</font>
+<hr>
+
+<form action = "./" method = "POST" enctype = "multipart/form-data">
+    <input type="file" name="image" accept="image/png, image/jpeg">
+    <input type = "submit"/>
+</form>
+<hr>
+
+<!-- Vue.js デモ -->
+<!-- 011_v-on?1.html 参照 -->
+<div id="app">
+    <p>{{ number }}回クリックされています</p>
+    <button v-on:click="number +=1">カウントアップ</button>
+</div> 
+
+<script>
+new Vue({
+    el: '#app',   // # で id と関係づける
+    data: {
+  	    number: 0
+    }
+})
+</script>
+<!-- Vue.js デモ終わり -->
+
+<% if prediction %>
+<hr>
+<img src="./images/<< filepath >>" style="margin-top: 10px; vertical-align: bottom; width: 300px"><br>
+<hr>
+<font size="4"><b>予測結果: << prediction >></b></font><br>
+<font size="3">
+File: << filepath >><br>
+<!-- Save path: {{ save_path }}<br> -->
+Dog: << dog >><br>
+Cat: << cat >><br>
+</font>
+<hr>
+<% endif %>
+
+<% if results %>
+
+<!-- app.py から送られてきた animalリストをVue.jsで使用 -->
+<!-- https://ymgsapo.com/2019/10/12/pass-value-template/ -->
+<script>
+var d = eval({{animal|tojson}})
+Vue.component('fuga', {
+    template: '#fuga-template',
+    data:function(){ return {animal_list: d }; }
+});
+</script>
+
+<!-- 配列の中身をすべて表示するために、v-forディレクティブを使用 -->
+<p>* animal list *</p>
+<p v-for="animal in animal_list" class="list-group-item">
+        << animal >>
+</p>
+
+<hr>
+<br>
+<font size="2">
+<table border="1" align="center" width=600>
+    <tr>
+        <th>id</th>
+        <th>filepath</th>
+        <th>prediction</th>
+        <th>dog</th>
+        <th>cat</th>
+    </tr>
+    <% for result in results %>
+    <tr>
+        <td><< result.id >></td>
+        <td><< result.filepath >></td>
+        <td><< result.prediction >></td>
+        <td><< result.dog >></td>
+        <td><< result.cat >></td>
+    </tr>
+    <% endfor %>
+</table>
+</font>
+<br>
+<hr>
+
+<% endif %>
+
+</div>
+
+<% endblock %>
