@@ -20,6 +20,10 @@ import db
 
 app = Flask(__name__)
 
+# Customize Directive
+# https://www.subarunari.com/entry/2017/09/30/003944
+# jinja2のディレクティブをFlask経由で変更できます。
+# 以下の例では、{{...}} {%...%} {#...#}をそれぞれ<<...>> <%...%> <#...#>に変更。
 jinja_options = app.jinja_options.copy()                                         
 jinja_options.update({                                                      
     'block_start_string': '<%',                                                 
