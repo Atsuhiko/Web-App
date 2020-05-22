@@ -21,6 +21,10 @@
 <div id="app" class="app">
     <p>{{ number }}回クリックされています</p>
     <button v-on:click="number +=1">カウントアップ</button>
+    <p v-if="number>=10 && number<20">10回もクリックどうもありがとう！</p>
+    <p v-else-if="number>=20 && number<50">20回も？疲れない？</p>
+    <p v-else-if="number>=50">熱中する心、いくつになっても忘れたくないね！</p>
+    <p v-else>クリックするといいことあるよ！</p>
 </div>
 
 
@@ -49,25 +53,40 @@ new Vue({
 
 
     <div id="vue_test">
-        犬み：　{{ message }}<br>
-        結果：　{{ message2 }}
-        <div v-if="message2==='cat'">この子は、ねこちゃんです</div>
-        <div v-if="message2==='dog'">この子は、わんちゃんです</div>
+        犬っぽさ： {{ dog }}<br>
+        猫っぽさ： {{ cat }}<br>
+        結果：　{{ prediction }}
+        <div v-if="prediction==='cat'">この子は、ねこちゃんです</div>
+        <div v-if="prediction==='dog'">この子は、わんちゃんです</div>
     </div>
 
     <div id="survey">
-        <button class="button1">合っています</button>
-        <button class="button1">違います</button>
+        <button class="button1" v-on:click="onClickCorrect()">合っています</button>
+        <button class="button1" v-on:click="onClickMistake()">違います</button>
     </div>
 
     <script>
-        var mvp10_test = new Vue({
-            el: '#vue_test',
-            data: {
-                message: "<< dog >>",
-                message2: "<< prediction >>"
-            }
-        })
+        // 複数Vueインスタンスを作るのが面倒なので、forEachで２つのdivのIDをelに入れる。
+        // Vueインスタンスのelには、IDを一つしかいれられない
+        const items = ['#vue_test','#survey'];
+        items.forEach(element => {
+            var mvp10_test = new Vue({
+                el: element,
+                data: {
+                    dog: "<< dog >>",
+                    cat: "<< cat >>",
+                    prediction: "<< prediction >>"
+                },
+                methods: {
+                    onClickCorrect: function(){
+                        alert("良かった！次もがんばります。")
+                    },
+                    onClickMistake: function(){
+                        alert("すみません。")
+                    }
+                }
+            })
+        });
     </script>
     <hr>
 <% endif %>
