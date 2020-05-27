@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<center>
+<hr>
+<font size="5"><b>緯度と経度を入力してください</b></font>
+<hr>
+<form action="./" method="post">
+    <label>緯度</label>
+    <input class="form-control" type="text" size="30" name="latitude"><br>
+    <label>経度</label>
+    <input class="form-control" type="text" size="30" name="longitude"><br>
+    <label>場所</label>
+    <input class="form-control" type="text" size="30" name="name"><br><br>
+    <input class="btn btn-primary" type="submit" value="送信">
+</form>
+<hr>
+</center>
+
+{% endblock %}

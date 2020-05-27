@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<center>
+<font size="5">
+経度: {{ latitude }}, 緯度: {{ longitude }}<br>
+場所: {{ name }}<br>
+</font>
+</center>
+
+{% include "map.html" %}
+
+{% endblock %}

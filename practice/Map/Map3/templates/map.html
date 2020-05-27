@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_4dd70ab8f1584234aa8cab360dd791a0 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_4dd70ab8f1584234aa8cab360dd791a0" ></div>
+        
+</body>
+<script>    
+    
+            var map_4dd70ab8f1584234aa8cab360dd791a0 = L.map(
+                "map_4dd70ab8f1584234aa8cab360dd791a0",
+                {
+                    center: [35.710063, 139.8107],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 18,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_ed56d7d0045b44819d0eb4daf9b0f66c = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_4dd70ab8f1584234aa8cab360dd791a0);
+        
+    
+            var marker_8222c50f1ba94222b0134917c2d76d26 = L.marker(
+                [35.710063, 139.8107],
+                {}
+            ).addTo(map_4dd70ab8f1584234aa8cab360dd791a0);
+        
+    
+        var popup_1e315ca0dc17447da2f5d55d9bc13b8d = L.popup({"maxWidth": "100%"});
+
+        
+            var html_4b1fdc2b37c74c6e99cd9d3fb7941be4 = $(`<div id="html_4b1fdc2b37c74c6e99cd9d3fb7941be4" style="width: 100.0%; height: 100.0%;">東京スカイツリー</div>`)[0];
+            popup_1e315ca0dc17447da2f5d55d9bc13b8d.setContent(html_4b1fdc2b37c74c6e99cd9d3fb7941be4);
+        
+
+        marker_8222c50f1ba94222b0134917c2d76d26.bindPopup(popup_1e315ca0dc17447da2f5d55d9bc13b8d)
+        ;
+
+        
+    
+</script>
