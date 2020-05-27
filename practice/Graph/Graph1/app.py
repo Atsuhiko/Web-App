@@ -3,7 +3,6 @@
 # 参考:  https://qiita.com/Gen6/items/2979b84797c702c858b1
 
 import os
-# import csv
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory, g, flash
 import pandas as pd
 import matplotlib.pyplot as plt
