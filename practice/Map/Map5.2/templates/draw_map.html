@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<center>
+
+<font size="5">
+経度: {{ latitude }}, 緯度: {{ longitude }}<br>
+場所: {{ name }}<br>
+</font>
+<br>
+
+<!-- index に戻るボタン -->
+<form action="/draw_map" method="post">
+    <button name="post_button" style="width: 25%; padding: 4px;"><b>戻る</b></button>
+</form>
+
+<br>
+<!-- お気に入り登録ボタン-->
+<form method="get" action="memo_get">
+    <label>場所の名前　<input type="text" name="placeName" value="{{ name }}"></label>
+    <input type="submit" value="お気に入りの場所に登録する">
+</form>
+<br>
+
+<!-- テキスト表示ボタン-->
+<form method="get" action="text">
+    <input type="submit" value="TEXTを表示">
+</form>
+<br>
+
+{% if text %}
+<font size="7">
+<b>{{ text }}</b><br>
+</font>
+{% endif %}
+
+</center>
+
+{% include "map.html" %}
+
+
+
+
+{% endblock %}
