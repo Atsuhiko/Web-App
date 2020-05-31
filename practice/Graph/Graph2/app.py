@@ -39,7 +39,12 @@ def upload_file():
         sns_plot_1.savefig(filepath_1)
         sns_plot_2.savefig(filepath_2)
 
-        return  render_template("index.html", csv=csv, filepath_1=filepath_1, filepath_2=filepath_2)
+        kind = request.form.get('kind')
+        if kind == "pairplot":
+            return render_template("index.html", csv=csv, filepath_1=filepath_1)
+        elif kind == "lmplot" :
+            return render_template("index.html", csv=csv, filepath_2=filepath_2)
+
 
 if __name__ == '__main__':
     app.run(app.run(debug=True,  host='0.0.0.0', port=3030)) # ポートの変更
