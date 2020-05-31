@@ -44,7 +44,8 @@ def upload_file():
             return render_template("index.html", csv=csv, filepath_1=filepath_1)
         elif kind == "lmplot" :
             return render_template("index.html", csv=csv, filepath_2=filepath_2)
-
+        else:
+            return "グラフの種類を選択してください！"
 
 if __name__ == '__main__':
     app.run(app.run(debug=True,  host='0.0.0.0', port=3030)) # ポートの変更
