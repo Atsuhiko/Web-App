@@ -51,9 +51,8 @@ def upload_file():
                 return render_template("index.html", csv=csv, filepath_2=filepath_2)
             elif kind == "2plots" :
                 return render_template("index.html", csv=csv, filepath_1=filepath_1, filepath_2=filepath_2)
-                
-        else: # エラー処理
-            return render_template("index.html", err_message_2="グラフの種類を選択してください！")
+            else: # エラー処理
+                return render_template("index.html", err_message_2="グラフの種類を選択してください！")
 
 if __name__ == '__main__':
     app.run(app.run(debug=True,  host='0.0.0.0', port=5554)) # ポートの変更
