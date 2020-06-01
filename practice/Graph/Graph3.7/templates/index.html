@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div style="text-align:center;">
+<font size="5">
+グラフの種類を選択して送信してください
+</font>
+<hr>
+
+<form action = "./" method = "POST" enctype = "multipart/form-data">
+    <!-- <input type="file" name="csv" accept="csv"> -->
+    <p>グラフの種類
+    <select name="kind">
+        <option value="">選択してください</option>
+        <option value="2d">2D Scatter Plot</option>
+        <option value="3d">3D Scatter Plot</option>
+    </select>
+    </p>
+    <input type = "submit" value="送信">
+</form>
+<form action="" method="POST"></form>
+</div>
+
+{% if err_message %}
+<hr>
+<center><font size="6" color=red><b>{{ err_message }}</b></font></center>
+<hr>
+{% endif %}
+
+{% endblock %}
