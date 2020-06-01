@@ -35,24 +35,28 @@ def upload_file():
 
         kind = request.form.get('kind')
         if kind:
-            # sns で描画
-            sns_plot_1 = sns.pairplot(df, hue ="label")
-            sns_plot_2 = sns.lmplot(x="a1", y="a4", data=df, hue="label")
-
-            # グラフ画像を保存
-            filepath_1 = "./graph/" + datetime.now().strftime("%Y%m%d%H%M%S_") + "graph1.png"
-            filepath_2 = "./graph/" + datetime.now().strftime("%Y%m%d%H%M%S_") + "graph2.png"
-            sns_plot_1.savefig(filepath_1)
-            sns_plot_2.savefig(filepath_2)
-
-            if kind == "pairplot":
-                return render_template("index.html", csv=csv, filepath_1=filepath_1)
-            elif kind == "lmplot" :
-                return render_template("index.html", csv=csv, filepath_2=filepath_2)
-            elif kind == "2plots" :
-                return render_template("index.html", csv=csv, filepath_1=filepath_1, filepath_2=filepath_2)
-            else: # エラー処理
+            if kind == "other":
                 return render_template("index.html", err_message_2="グラフの種類を選択してください！")
+            else:
+            # sns で描画
+                sns_plot_1 = sns.pairplot(df, hue ="label")
+                sns_plot_2 = sns.lmplot(x="a1", y="a4", data=df, hue="label")
+
+                # グラフ画像を保存
+                filepath_1 = "./graph/" + datetime.now().strftime("%Y%m%d%H%M%S_") + "graph1.png"
+                filepath_2 = "./graph/" + datetime.now().strftime("%Y%m%d%H%M%S_") + "graph2.png"
+                sns_plot_1.savefig(filepath_1)
+                sns_plot_2.savefig(filepath_2)
+
+                if kind == "pairplot":
+                    return render_template("index.html", csv=csv, filepath_1=filepath_1)
+                elif kind == "lmplot" :
+                    return render_template("index.html", csv=csv, filepath_2=filepath_2)
+                elif kind == "2plots" :
+                    return render_template("index.html", csv=csv, filepath_1=filepath_1, filepath_2=filepath_2)
+                
+        else: # エラー処理
+            return render_template("index.html", err_message_2="グラフの種類を選択してください！")
 
 if __name__ == '__main__':
     app.run(app.run(debug=True,  host='0.0.0.0', port=5554)) # ポートの変更
