@@ -132,3 +132,32 @@ input[type=submit] {
   align-self: start;
   min-width: 10em;
 }
+
+header {
+  font-weight: bold;
+  font-size: 7px;
+  text-align: center;
+}
+
+.please {
+  font-size: 5px;
+  text-align: center;
+}
+
+.changeWithChoice {
+  text-align: center;
+}
+
+.incorrectChoice {
+  font-size: 6px;
+  color: red;
+  font-weight: bold;
+}
+
+.csvName{
+  font-size: 3px;
+}
+
+.csv {
+  font-size: 6px;
+}
