@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="contentsContainer">
+    <hr>
+    <p class="info">緯度と経度を入力してください</p>
+    <hr>
+    <form action="./" method="post">
+        <!-- 初期値は東京スカイツリー -->
+        <label>緯度</label>
+        <input class="form-control" type="text" size="30" name="latitude" value="35.710063"><br>
+        <label>経度</label>
+        <input class="form-control" type="text" size="30" name="longitude" value="139.8107"><br>
+        <label>場所</label>
+        <input class="form-control" type="text" size="30" name="name" value="東京スカイツリー"><br><br>
+        <input class="btn btn-primary" type="submit" value="送信">
+    </form>
+    <hr>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memo</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        const addMemo = () => {
+
+            const p = document.createElement('p');
+            const addMemoPlace = document.getElementById('addMemoPlace').value;
+            p.innerHTML = `- ${addMemoPlace}が登録されました！`;
+
+            // articleタグの子要素としてpを追加
+            const article = document.querySelector('article');
+            article.appendChild(p);
+        }
+
+        // ボタンをクリックしたことをトリガーに処理を走らす
+        const addMemoBtn = document.querySelector('.addMemoBtn');
+        addMemoBtn.onclick = () => {
+            return addMemo();
+        };
+    </script>
+</head>
+<body>
+    <p>追加登録はこちら↓</p>
+    <label>場所の名前 <input type="text" id="addMemoPlace" name="addMemoPlace" value=""></label>
+    <button id="addMemoBtn" onclick="addMemo()">追加登録</button>
+
+    <article>
+        <p>- {{ placeName }} が登録されました！</p>
+    </article>
+
+
+</body>
+</html>
