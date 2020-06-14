@@ -55,4 +55,4 @@ def upload_file():
             return render_template("index.html", err_message_2="グラフの種類を選択してください！")
 
 if __name__ == '__main__':
-    app.run(app.run(debug=True,  host='0.0.0.0', port=3333)) # ポートの変更
+    app.run(debug=True,  host='0.0.0.0', port=3333) # ポートの変更
