@@ -83,7 +83,7 @@ def upload_file():
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(app.run(debug=True,  host='0.0.0.0', port=8080)) # ポートの変更
+    app.run(debug=True,  host='0.0.0.0', port=8080) # ポートの変更
 
 # SAVE_DIR = "./images"
 # if not os.path.isdir(SAVE_DIR):
