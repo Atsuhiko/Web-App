@@ -42,4 +42,4 @@ def upload_file():
         return  render_template("index.html", csv=csv, filepath_1=filepath_1, filepath_2=filepath_2)
 
 if __name__ == '__main__':
-    app.run(app.run(debug=True,  host='0.0.0.0', port=3030)) # ポートの変更
+    app.run(debug=True,  host='0.0.0.0', port=3030) # ポートの変更
