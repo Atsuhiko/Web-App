@@ -48,4 +48,4 @@ def upload_file():
             return "グラフの種類を選択してください！"
 
 if __name__ == '__main__':
-    app.run(app.run(debug=True,  host='0.0.0.0', port=3030)) # ポートの変更
+    app.run(debug=True,  host='0.0.0.0', port=3333) # ポートの変
