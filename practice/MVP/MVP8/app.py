@@ -107,7 +107,9 @@ def upload_file():
 
         return  render_template("index.html", 
                                 filepath=filepath, prediction=prediction, cat=cat, dog=dog,
-                                results=results)
+                                results=results, 
+                                animal=['dog','cat','pig']) # フロントエンドの Vue.js で使用
+                                # https://ymgsapo.com/2019/10/12/pass-value-template/
 
  
 # 終了したとき db 接続を close する
@@ -118,4 +120,4 @@ def close_db(error):
 
 
 if __name__ == '__main__':
-    app.run(debug=True,  host='0.0.0.0', port=1010) # ポートの変更
+    app.run(debug=True,  host='0.0.0.0', port=3030) # ポートの変更
