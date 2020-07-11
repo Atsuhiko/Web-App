@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div style="text-align:center;">
+<font size="5">
+Please choose the company and year.
+</font>
+<hr>
+
+<form action = "./" method = "POST" enctype = "multipart/form-data">
+    <select name="company">
+        <option value="kao">Kao</option>
+        <option value="shiseido">Shiseido</option>
+    </select>
+    <select name="year">
+        <option value="2019">2019</option>
+        <option value="2018">2018</option>
+    </select>
+    <br><br>
+    <input type = "submit" value="送信">
+</form>
+<form action="" method="POST"></form>
+
+
+{% if filepath %}
+<hr>
+<font size="6">{{company}} {{year}}<br></font>
+<img src="{{ filepath }}" style="margin-top: 0px; vertical-align: bottom; width: 700px"><br>
+<hr>
+{% endif %}
+
+<!-- {% if filepath_2 %}
+<hr>
+<font size="6">{{company}}<br></font>
+<img src="{{ filepath_2 }}" style="margin-top: 0px; vertical-align: bottom; width: 700px"><br>
+<hr>
+{% endif %} -->
+
+</div>
+
+{% endblock %}
