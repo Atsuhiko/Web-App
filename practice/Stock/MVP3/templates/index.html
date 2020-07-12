@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div style="text-align:center;">
+<font size="5">
+    Please input the company code and year
+</font>
+<hr>
+
+<form action="./" method="post">
+    <!-- 初期値は花王：4452, 年:：2019 -->
+    <font size="4">
+    <label>code: </label>
+    <input class="form-control" type="text" size="10" name="code" value="4452"><br>
+    <label>year: </label>
+    <input class="form-control" type="text" size="10" name="year" value="2019"><br><br>
+    </font>
+    <input class="btn btn-primary" type="submit" value="送信">
+</form>
+
+{% if filepath %}
+<hr>
+<font size="6">code: {{code}}  year: {{year}}<br></font>
+<img src="{{ filepath }}" style="margin-top: 0px; vertical-align: bottom; width: 700px"><br>
+<hr>
+{% endif %}
+
+</div>
+
+{% endblock %}
