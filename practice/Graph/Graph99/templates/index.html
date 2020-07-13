@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% block content %}
+
+<div style="text-align: center;">
+    <font size="5">
+        ファイルとグラフの種類を選択して送信してください
+    </font>
+    {% if error_msg %}
+    <hr />
+    <p>
+        <font size="4" color="red">{{ error_msg }}</font>
+    </p>
+    {% endif %}
+    <hr />
+
+    <form action="./" method="POST" enctype="multipart/form-data">
+        <input type="file" name="csv" accept="csv" />
+        <p>グラフの種類</p>
+        <select name="kind">
+            <option value="">選択してください</option>
+            <option value="pairplot">pairplot</option>
+            <option value="lmplot">lmplot</option>
+            <option value="duplicated">duplicated</option>
+            <option value="missing">missing</option>
+            <option value="univariate">univariate analysis(不具合あり)</option>
+        </select>
+        <p></p>
+        <input type="submit" value="送信" />
+    </form>
+    <form action="" method="POST"></form>
+
+    {% if filepath %}
+    <hr />
+    <font size="3">{{ csv }}</font>
+    <hr />
+    <font size="6">{{ graph_name }}<br /></font>
+    <img
+        src="{{ filepath }}"
+        style="margin-top: 10px; vertical-align: bottom; width: 700px;"
+    /><br />
+    <hr />
+    {% endif %}
+</div>
+
+{% endblock %}
