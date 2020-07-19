@@ -162,3 +162,16 @@ button.button1 {
 #vue_test {
   font-size: 1em;
 }
+
+.result-db {
+  font-size: 1em;
+}
+
+.result-db table {
+  border: solid;
+  width: 600px;
+  text-align: center;
+  border: 1px;
+  border-color: black;
+  font-size: 0.8em;
+}
