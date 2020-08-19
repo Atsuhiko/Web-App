@@ -1,7 +1,0 @@
-Flask 関連以外に、仮想環境にインストールするライブラリーのインストール
-
-① Anaconda Navigator の Environment で、Install から All にする
-② openCV を探し出して、左側の □ を ☑ にして、右下の緑色の Apply をクリック
-③ 仮想環境のTerminal を立ち上げる。
-④ Tensorflow 1.14.0 のインストール： conda install tensorflow==1.14.0
-Keras 2.2.4 のインストール： conda install keras==2.2.4
