@@ -13,7 +13,7 @@ from datetime import datetime
 from tensorflow.keras.preprocessing.image import load_img
 from tensorflow.keras.models import load_model
 
-# 判別アルゴリズムのインポート
+# 判別アルゴリズムインポート
 from image_process import Predict_Dogs_Cats
 # DBライブラリーインストール
 import db
