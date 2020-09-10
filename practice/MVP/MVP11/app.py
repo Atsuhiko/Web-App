@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # 参考: https://qiita.com/redshoga/items/60db7285a573a5e87eb6
 # 参考: https://teratail.com/questions/244325
 # 参考: https://qiita.com/Susasan/items/52d1c838eb34133042a3
@@ -49,8 +50,8 @@ def connect_db():
     con = sqlite3.connect(app.config['DATABASE'])
     con.row_factory = sqlite3.Row
     return con
- 
- 
+
+
 def get_db():
     """ connectionを取得します """
     if not hasattr(g, 'sqlite_db'):
@@ -68,7 +69,7 @@ def send_js(filepath):
     return send_from_directory(SAVE_DIR, filepath)
 
 
-@app.route("/", methods=["GET","POST"])
+@app.route("/", methods=["GET", "POST"])
 def upload_file():
     if request.method == "GET":
         return render_template("index.html")
@@ -81,11 +82,11 @@ def upload_file():
         input_img = cv2.imdecode(img_array, 1)
 
         # イヌと猫の判別
-        model = load_model('model_cnn.h5') # 学習ずみモデルの読み込み
+        model = load_model('model_cnn.h5')  # 学習ずみモデルの読み込み
         result = Predict_Dogs_Cats(input_img, model)
         print(result)
 
-        cat = float(result[0][0]) # floar() しないとSQLにrealとして渡せない
+        cat = float(result[0][0])  # floar() しないとSQLにrealとして渡せない
         dog = float(result[0][1])
 
         if result[0][0] > result[0][1]:
@@ -105,13 +106,20 @@ def upload_file():
         # """ 一覧画面 """
         results = db.select_all(con)
 
-        return  render_template("index.html", 
-                                filepath=filepath, prediction=prediction, cat=cat, dog=dog,
-                                results=results, 
-                                animal=['dog','cat','pig']) # フロントエンドの Vue.js で使用
-                                # https://ymgsapo.com/2019/10/12/pass-value-template/
+        return render_template(
+            "index.html",
+            filepath=filepath,
+            prediction=prediction,
+            cat=cat,
+            dog=dog,
+            results=results,
+            animal=[
+                'dog',
+                'cat',
+                'pig'])  # フロントエンドの Vue.js で使用
+        # https://ymgsapo.com/2019/10/12/pass-value-template/
 
- 
+
 # 終了したとき db 接続を close する
 @app.teardown_appcontext
 def close_db(error):
@@ -120,4 +128,4 @@ def close_db(error):
 
 
 if __name__ == '__main__':
-    app.run(debug=True,  host='0.0.0.0', port=3031) # ポートの変更
+    app.run(debug=True, host='0.0.0.0', port=3031)  # ポートの変更
