@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from http.server import SimpleHTTPRequestHandler, HTTPServer
 
 server = HTTPServer(('', 8000), SimpleHTTPRequestHandler) # サーバーを定義

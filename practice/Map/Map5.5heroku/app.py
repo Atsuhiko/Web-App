@@ -1,7 +1,12 @@
+# coding: utf-8
+# 日本語を使うためのおまじない
+
 # 参考: https://stackoverflow.com/questions/37379374/insert-the-folium-maps-into-the-jinja-template
 
+
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory, g, flash
-import folium # conda install -c conda-forge folium
+import folium
+# conda install -c conda-forge folium
 
 app = Flask(__name__)
 
