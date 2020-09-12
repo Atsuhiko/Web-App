@@ -6,7 +6,7 @@
 
 import os
 import cv2
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory, g, flash
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory, g, flash, jsonify
 import sqlite3
 import numpy as np
 # import pandas as pd
@@ -19,7 +19,7 @@ from image_process import Predict_Dogs_Cats
 # DBライブラリーインストール
 import db
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../dist/static', template_folder='../dist')
 
 # Customize Directive
 # https://www.subarunari.com/entry/2017/09/30/003944
@@ -68,6 +68,12 @@ if not os.path.isdir(SAVE_DIR):
 def send_js(filepath):
     return send_from_directory(SAVE_DIR, filepath)
 
+@app.route('/axios-test')
+def hello():
+    helloResult = {
+        "result": request.json['text'].split()
+    }
+    return jsonify(helloResult)
 
 @app.route("/", methods=["GET", "POST"])
 def upload_file():
@@ -75,8 +81,12 @@ def upload_file():
         return render_template("index.html")
 
     if request.method == "POST":
-
         # 画像として読み込み
+        """stream = request.files['image'].stream
+        img_array = np.asarray(bytearray(stream.read()), dtype=np.uint8)
+        input_img = cv2.imdecode(img_array, 1)
+        """
+        # stream = request.form['image'].stream
         stream = request.files['image'].stream
         img_array = np.asarray(bytearray(stream.read()), dtype=np.uint8)
         input_img = cv2.imdecode(img_array, 1)
@@ -104,9 +114,15 @@ def upload_file():
         pk = db.insert(con, filepath, prediction, dog, cat)
 
         # """ 一覧画面 """
-        results = db.select_all(con)
+        results = db.selerect_all(con)
+        response = {
+            'cat': cat,
+            'dog': dog,
+            'results': results,
+        }
+        return jsonify(response)
 
-        return render_template(
+        """return render_template(
             "index.html",
             filepath=filepath,
             prediction=prediction,
@@ -116,7 +132,7 @@ def upload_file():
             animal=[
                 'dog',
                 'cat',
-                'pig'])  # フロントエンドの Vue.js で使用
+                'pig'])  # フロントエンドの Vue.js で使用"""
         # https://ymgsapo.com/2019/10/12/pass-value-template/
 
 

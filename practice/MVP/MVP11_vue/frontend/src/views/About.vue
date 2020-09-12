@@ -1,5 +1,6 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <v-card>
+    <v-card-title>About page!</v-card-title>
+    <v-card-text>About page</v-card-text>
+  </v-card>
 </template>
