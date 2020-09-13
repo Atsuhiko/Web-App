@@ -12,7 +12,7 @@
           <v-icon>mdi-magnify</v-icon>
         </v-btn>
       </v-app-bar>
-
+      <!--
       <v-row class="mt-10 pt-10" align="start" justify="center">
         <v-col cols="10">
           <v-textarea outlined name="input-7-4" label="テキストを入力してください" v-model="inputText"></v-textarea>
@@ -42,8 +42,11 @@
             </v-list>
           </v-card>
         </v-col>
-      </v-row>
-
+      </v-row>-->
+      <TextCount
+        v-bind:items="items"
+        v-on:count="sendData"
+      ></TextCount>
       <UploadImage></UploadImage>
     </v-container>
   </v-app>
@@ -52,13 +55,15 @@
 <script>
 //import { axios } from '../../../MVP11_vue/frontend/src/plugins/axios';
 import axios from 'axios'
-import UploadImage from "./components/UploadImage";
+import UploadImage from "./components/UploadImage"
+import TextCount from "./components/TextCount"
 
 export default {
   name: "App",
 
   components: {
     UploadImage,
+    TextCount,
   },
 
   data: () => ({
@@ -68,10 +73,10 @@ export default {
   }),
 
   methods: {
-    sendData() {
-      var data = { text: this.inputText };
+    sendData(childInputText) {
+      var data = { text: childInputText };
       axios
-      .post('/api/post', data)
+      .post('/api/text-count', data)
       .then(response => {
         this.items.push(response.data)
       })
