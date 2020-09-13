@@ -1,60 +1,84 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+    <v-container>
+      <v-app-bar app color="orange">
+        <v-app-bar-nav-icon></v-app-bar-nav-icon>
+        <v-toolbar-title>Page Title</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-btn icon>
+          <v-icon>mdi-heart</v-icon>
+        </v-btn>
+        <v-btn icon>
+          <v-icon>mdi-magnify</v-icon>
+        </v-btn>
+      </v-app-bar>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
+      <v-row class="mt-10 pt-10" align="start" justify="center">
+        <v-col cols="10">
+          <v-textarea outlined name="input-7-4" label="テキストを入力してください" v-model="inputText"></v-textarea>
+        </v-col>
+        <v-col cols="2">
+          <v-btn outlined @click="sendData">文字数をカウント</v-btn>
+        </v-col>
+      </v-row>
 
-      <v-spacer></v-spacer>
+      <v-row align="start" justify="center">
+        <v-col cols="6">
+          <v-card max-width="450" class="mx-auto">
+            <v-toolbar dark>
+              <v-toolbar-title>Result</v-toolbar-title>
+            </v-toolbar>
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
+            <v-list three-line>
+              <template v-for="(item, index) in items">
+                <v-list-item :key="item.title">
+                  <v-list-item-content>
+                    <v-list-item-title>{{ item.count }}文字です</v-list-item-title>
+                    <v-list-title-subtitle>{{ item.text }}</v-list-title-subtitle>
+                  </v-list-item-content>
+                </v-list-item>
+                <v-divider :key="index" :inset="item.inset"></v-divider>
+              </template>
+            </v-list>
+          </v-card>
+        </v-col>
+      </v-row>
 
-    <v-main>
-      <HelloWorld/>
-    </v-main>
+      <UploadImage></UploadImage>
+    </v-container>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+//import { axios } from '../../../MVP11_vue/frontend/src/plugins/axios';
+import axios from 'axios'
+import UploadImage from "./components/UploadImage";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
-    HelloWorld,
+    UploadImage,
   },
 
   data: () => ({
-    //
+    inputText: "",
+    TextLength: null,
+    items: [],
   }),
+
+  methods: {
+    sendData() {
+      var data = { text: this.inputText };
+      axios
+      .post('/api/post', data)
+      .then(response => {
+        this.items.push(response.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
+  },
 };
 </script>
