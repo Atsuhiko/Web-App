@@ -6,9 +6,15 @@
 
 
 # import cv2
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory, g, flash, jsonify, session, Blueprint
+from flask import Flask, current_app, render_template, request, redirect, url_for, send_from_directory, g, flash, jsonify, session, Blueprint
 from flask_restful import Api, Resource
 import json
+# from flask_cors import CORS
+from random import *
+# from PIL import Image
+from pathlib import Path
+from io import BytesIO
+import base64
 # import numpy as np
 # import pandas as pd
 # from datetime import datetime
@@ -18,21 +24,21 @@ import json
 # 判別アルゴリズムのインポート
 # from image_process import Predict_Dogs_Cats
 
+
 upload_image_bp = Blueprint('upload_image', __name__, url_prefix='/api/uploadimage')
+
 # @upload_image_bp.route('/api/upload-image', methods=['POST'])
 class UploadImage(Resource):
     def post(self):
-        """if request.method == 'POST':
-            if 'file' not in request.files:
-                flash('ファイルがありません')
-                return redirect(request.url)
-            file = request.files['file']
-            if file.filename == '':
-                flash('ファイルがありません')
-                return redirect(resquest.url)
-            return jsonify(file.filename)"""
-        result_data = {'text': 'uploadimage'}
-        return jsonify(result_data)
+        if request.method == 'POST':
+            image = request.files['image']
+            code = base64.b64decode(image.split(',')[1])
+            # image_decoded = Image.open(BytesIO(code))
+            # image_decoded.save(Path(app.config['UPLOAD_FOLDER']) / 'image.png')
+            return make_resoinse(jsonify({'result': 'success'}))
+            # return jsonify(file_name)
+        # result_data = {'text': 'uploadimage'}
+        # return jsonify(result_data)
 
 upload_image = Api(upload_image_bp)
 upload_image.add_resource(UploadImage, '')
