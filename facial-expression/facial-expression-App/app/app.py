@@ -12,7 +12,7 @@ from tensorflow.keras.preprocessing.image import load_img
 from tensorflow.keras.models import load_model
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 app.config.from_object(__name__)
 
 jinja_options = app.jinja_options.copy()
@@ -27,6 +27,17 @@ jinja_options.update({
 app.jinja_options = jinja_options
 
 
+SAVE_DIR = "/Users/yuriko-kakino/Documents/Web-App/facial-expression/facial-expression-App/app/static/images"
+if not os.path.isdir(SAVE_DIR):
+    os.mkdir(SAVE_DIR)
+
+
+#@app.route('/<path:filepath>')
+@app.route('/static/images/<path:filepath>')
+def send_js(filepath):
+    return send_from_directory(SAVE_DIR, filepath)
+
+
 @app.route('/start-camera')
 def startCamera():
     cap = cv2.VideoCapture(0)
@@ -35,8 +46,9 @@ def startCamera():
         print("IO Error")
     else:
         ret, frame = cap.read()
+        image_path = "/Users/yuriko-kakino/Documents/Web-App/facial-expression/facial-expression-App/app/static/images/"
         if (ret):
-            cv2.imwrite("image.png", frame)
+            cv2.imwrite(image_path + "image.png", frame)
         else:
             print("Read Error")
 
@@ -62,7 +74,7 @@ def pred_emotion():
     # 画像を読み込む
     sample = random.choice(filenames)
     # img = load_img("./images/"+sample, target_size=IMAGE_SIZE)
-    img = load_img("./image.png", target_size=IMAGE_SIZE)
+    img = load_img("/Users/yuriko-kakino/Documents/Web-App/facial-expression/facial-expression-App/app/static/images/image.png", target_size=IMAGE_SIZE)
     img_org = img
 
     # model = load_model('../2020-09-27-epoch50.h5')
