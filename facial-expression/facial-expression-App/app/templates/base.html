@@ -8,7 +8,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
-    <link rel="stylesheet" href="/static/style.css" />
+    <!-- <link rel="stylesheet" href="/static/style.css" /> -->
     <link
       href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons"
       rel="stylesheet"
@@ -34,9 +34,11 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
     <!-- app.py で Customize Directive -->
     <!-- https://www.subarunari.com/entry/2017/09/30/003944 -->
+    
     <script>
+      // import axios from 'axios';
 
-      new Vue({
+    new Vue({
         el: '#app',
         data: function () {
           return {
@@ -56,6 +58,16 @@
           };
         },
         methods: {
+          /*startCamera: function() {
+            const path = `/start-camera`
+            axios.get(path)
+            .then(response => {
+              console.log(response)
+            })
+            .catch(error => {
+              console.log(error)
+            })
+          },*/
           startCamera: function () {
             fetch('/start-camera')
               .then((response) => {

@@ -1,16 +1,20 @@
 <% extends "base.html" %> <% block content %>
-
 <v-container>
   <v-card>
     <v-card-title>1日の始まり！表情分析</v-card-title>
     <v-card-text>
       <v-btn v-on:click="startCamera">カメラを起動</v-btn>
+      <btn v-on:click="startCamera">カメラを起動</btn>
       カメラで撮影し、分析する顔を更新することが出来ます。
     </v-card-text>
+    <form action="./start-camera" method="GET">
+        <input type="submit" />
+    </form>
     <v-divider></v-divider>
     <v-card-text>
         <!---->
       <v-btn v-on:click="predEmotion">表情を分析</v-btn>
+      <btn v-on:click="predEmotion">表情を分析</btn>
       <img src="/static/images/image.png"></img>
     </v-card-text>
   </v-card>
