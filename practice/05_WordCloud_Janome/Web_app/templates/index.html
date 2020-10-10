@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div style="text-align:center;">
+<font size="5">
+    Please input URL and choose the mask.
+</font>
+<hr>
+
+<form action="./" method="post" enctype = "multipart/form-data">
+    <font size="4">
+    <label>URL: </label>
+    <input class="form-control" type="text" size="80" name="url" 
+            value="https://ja.wikipedia.org/wiki/%E9%AC%BC%E6%BB%85%E3%81%AE%E5%88%83"><br>
+    <label>mask: </label>
+    <select name="mask">
+        <option value="none">none</option>
+        <option value="heart">heart</option>
+        <option value="cat">cat</option>
+    </select>
+    </font><BR>
+    <input class="btn btn-primary" type="submit" value="送信">
+</form>
+
+{% if filepath %}
+<hr>
+<font size="3">URL: {{url}}<br></font>
+<img src="{{ filepath }}" style="margin-top: 0px; vertical-align: bottom; width: 700px"><br>
+<hr>
+{% endif %}
+
+</div>
+
+{% endblock %}
