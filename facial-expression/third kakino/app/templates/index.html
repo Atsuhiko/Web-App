@@ -1,0 +1,59 @@
+<% extends "base.html" %> <% block content %>
+
+<div>
+    <form action="/start-camera" method="post">
+        <p>入力：<input type="text"></p>
+        <p><input type="submit" value="start-camerea"></p>
+    </form>
+    <form action="/hello" method="post">
+        <p>入力：<input type="text"></p>
+        <p><input type="submit" value="a"></p>
+    </form>
+    <form action="/camera" method="post">
+        <p>入力：<input type="text"></p>
+        <p><input type="submit" value="camera"></p>
+    </form>
+</div>
+
+  <% if predict %>
+  <v-card>
+        <v-list>
+            <v-list-item>
+                <v-list-item-content>怒り</v-list-item-content>
+                <v-list-item-content class="align-end"><< predict.angry >></v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+                <v-list-item-content>むかつき</v-list-item-content>
+                <v-list-item-content v-html="disgust" class="align-end"><< predict.disgust >></v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+                <v-list-item-content>悲しみ</v-list-item-content>
+                <v-list-item-content v-html="fear" class="align-end"><< predict.fear >></v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+                <v-list-item-content>喜び</v-list-item-content>
+                <v-list-item-content v-html="happy" class="align-end"><< predict.happy >></v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+                <v-list-item-content>悲しみ</v-list-item-content>
+                <v-list-item-content v-model="sad" class="align-end"><< predict.sad >></v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+                <v-list-item-content>驚き</v-list-item-content>
+                <v-list-item-content v-model="surprise" class="align-end"><< predict.surprise >></v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+                <v-list-item-content>中立</v-list-item-content>
+                <v-list-item-content v-model="neutral" class="align-end"><< predict.neutral >></v-list-item-content>
+            </v-list-item>
+        </v-list>
+    </v-card-text>
+    <v-btn @click="decideEmotion">今日の調子を判定</v-btn>
+    <v-card-title>
+        あなたは今{{ emotion }}表情ですね。
+    </v-card-title>
+  </v-card>
+  <% endif %>
+
+
+<% endblock %>
