@@ -47,7 +47,6 @@ def startCamera():
         print("IO Error")
     else:
         ret, frame = cap.read()
-        # image_path = "/Users/yuriko-kakino/Documents/Web-App/facial-expression/facial-expression-App/app/static/images/"
         image_path = "./images/"
         if (ret):
             cv2.imwrite(image_path + "image.png", frame)
@@ -80,7 +79,6 @@ def pred_emotion():
     img = load_img("./images/image.png", target_size=IMAGE_SIZE)
     img_org = img
 
-    # model = load_model('../2020-09-27-epoch50.h5')
     model = load_model('../2020-09-29.h5')
 
     # 画像をnumpy配列に変換
