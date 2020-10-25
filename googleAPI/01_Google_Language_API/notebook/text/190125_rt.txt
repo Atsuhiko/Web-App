@@ -1,0 +1,30 @@
+# A tibble: 961 x 88
+   user_id status_id created_at          screen_name text  source display_text_wi~ reply_to_status~ reply_to_user_id
+   <chr>   <chr>     <dttm>              <chr>       <chr> <chr>             <dbl> <chr>            <chr>           
+ 1 371261~ 10887513~ 2019-01-25 10:52:07 asoboTV     "ç°åé2~ Twitt~              168 <NA>             <NA>            
+ 2 108141~ 10887513~ 2019-01-25 10:52:05 buzzossantv "ÅyééÇµ~ Twitt~              140 <NA>             <NA>            
+ 3 273099~ 10887513~ 2019-01-25 10:52:01 annin_77    "Åwìåãû~ Twitt~              177 <NA>             <NA>            
+ 4 108143~ 10887512~ 2019-01-25 10:51:37 vann_o_ein  "ä≈î¬ÇÕ~ Twitt~               72 <NA>             <NA>            
+ 5 300786~ 10887510~ 2019-01-25 10:51:04 altotm1     "Ç€Ç¨ÉN~ Twitt~               69 <NA>             <NA>            
+ 6 944700~ 10887510~ 2019-01-25 10:50:44 ryuukudou   "äFÇ≥ÇÒ~ ÉcÉCèïÅB~               88 <NA>             <NA>            
+ 7 944700~ 10883885~ 2019-01-24 10:50:37 ryuukudou   "äFÇ≥ÇÒ~ ÉcÉCèïÅB~               88 <NA>             <NA>            
+ 8 172178~ 10887509~ 2019-01-25 10:50:29 goomet      ÅyGoo~ twitt~               73 <NA>             <NA>            
+ 9 172178~ 10883885~ 2019-01-24 10:50:29 goomet      ÅyGoo~ twitt~               73 <NA>             <NA>            
+10 172178~ 10887132~ 2019-01-25 08:20:29 goomet      ÅyGoo~ twitt~               84 <NA>             <NA>            
+# ... with 951 more rows, and 79 more variables: reply_to_screen_name <chr>, is_quote <lgl>, is_retweet <lgl>,
+#   favorite_count <int>, retweet_count <int>, hashtags <list>, symbols <list>, urls_url <list>, urls_t.co <list>,
+#   urls_expanded_url <list>, media_url <list>, media_t.co <list>, media_expanded_url <list>, media_type <list>,
+#   ext_media_url <list>, ext_media_t.co <list>, ext_media_expanded_url <list>, ext_media_type <chr>,
+#   mentions_user_id <list>, mentions_screen_name <list>, lang <chr>, quoted_status_id <chr>, quoted_text <chr>,
+#   quoted_created_at <dttm>, quoted_source <chr>, quoted_favorite_count <int>, quoted_retweet_count <int>,
+#   quoted_user_id <chr>, quoted_screen_name <chr>, quoted_name <chr>, quoted_followers_count <int>,
+#   quoted_friends_count <int>, quoted_statuses_count <int>, quoted_location <chr>, quoted_description <chr>,
+#   quoted_verified <lgl>, retweet_status_id <chr>, retweet_text <chr>, retweet_created_at <dttm>, retweet_source <chr>,
+#   retweet_favorite_count <int>, retweet_retweet_count <int>, retweet_user_id <chr>, retweet_screen_name <chr>,
+#   retweet_name <chr>, retweet_followers_count <int>, retweet_friends_count <int>, retweet_statuses_count <int>,
+#   retweet_location <chr>, retweet_description <chr>, retweet_verified <lgl>, place_url <chr>, place_name <chr>,
+#   place_full_name <chr>, place_type <chr>, country <chr>, country_code <chr>, geo_coords <list>, coords_coords <list>,
+#   bbox_coords <list>, status_url <chr>, name <chr>, location <chr>, description <chr>, url <chr>, protected <lgl>,
+#   followers_count <int>, friends_count <int>, listed_count <int>, statuses_count <int>, favourites_count <int>,
+#   account_created_at <dttm>, verified <lgl>, profile_url <chr>, profile_expanded_url <chr>, account_lang <chr>,
+#   profile_banner_url <chr>, profile_background_url <chr>, profile_image_url <chr>
