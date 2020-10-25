@@ -55,12 +55,7 @@ def startCamera():
         else:
             print("Read Error")
 
-    # 消した
-    # cap.release()
-    # response = {
-    #     "message": "ok"
-    # }
-    # return jsonify(response)
+    cap.release()
     return render_template("index.html")
 
 @app.route("/")
@@ -76,8 +71,7 @@ def pred_emotion():
     IMAGE_SIZE = (48, 48)
 
     # 画像を読み込む
-    # sample = random.choice(filenames)
-    # img = load_img("./images/"+sample, target_size=IMAGE_SIZE)
+    
     # img = load_img("/images/image.png", target_size=IMAGE_SIZE)
     save_path = os.path.join(SAVE_DIR, "image.png") # 井伊書き換え
     img = load_img(save_path, target_size=IMAGE_SIZE) # 井伊書き換え
@@ -114,19 +108,7 @@ def pred_emotion():
     print(type(angry))
 
     # plt.imshow(img_org) # 入力したオリジナルイメージ
-    """
-    return render_template(
-        "index.html",
-        angry=angry,
-        disgust=disgust,
-        fear=fear,
-        happy=happy,
-        sad=sad,
-        surprise=surprise,
-        neutral=neutral
-    )
-    """
-    
+
     response = {
         "angry": angry,
         "disgust": disgust,
@@ -136,16 +118,6 @@ def pred_emotion():
         "surprise": surprise,
         "neutral": neutral,
     }
-    
-    """
-    response = [angry,
-            disgust,
-            fear,
-            happy,
-            sad,
-            surprise,
-            neutral]
-    """
 
     # Webカメラから取得した画像データpillowを用いて再び読み込みタイムスタンプを付けて保存
     img = Image.open(save_path)

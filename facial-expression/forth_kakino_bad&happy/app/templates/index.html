@@ -1,22 +1,21 @@
 <% extends "base.html" %> <% block content %>
-
-<div>
-    <form action="/start-camera" method="post">
-        <p>入力：<input type="text"></p>
-        <p><input type="submit" value="start-camerea"></p>
-    </form>
-    <form action="/hello" method="post">
-        <p>入力：<input type="text"></p>
-        <p><input type="submit" value="a"></p>
-    </form>
-    <form action="/camera" method="post">
-        <p>入力：<input type="text"></p>
-        <p><input type="submit" value="camera"></p>
-    </form>
-</div>
-
+<v-container>
+  <v-card>
+    <v-card-title>1日の始まり！表情分析</v-card-title>
+    <v-card-text>
+      <v-btn v-on:click="startCamera">カメラを起動</v-btn>
+      カメラで撮影し、分析する顔を更新することが出来ます。
+    </v-card-text>
+    <v-divider></v-divider>
+    <v-card-text>
+        <!---->
+      <v-btn v-on:click="predEmotion">表情を分析</v-btn>
+      <!-- <img src="/images/image.png"></img> -->
+    </v-card-text>
+  </v-card>
   <% if predict %>
   <v-card>
+    <v-card-text>
         <v-list>
             <v-list-item>
                 <v-list-item-content>怒り</v-list-item-content>
@@ -49,11 +48,11 @@
         </v-list>
     </v-card-text>
     <v-btn @click="decideEmotion">今日の調子を判定</v-btn>
-    <v-card-title>
+    <!--<v-card-title>
         あなたは今{{ emotion }}表情ですね。
-    </v-card-title>
+    </v-card-title>-->
   </v-card>
   <% endif %>
-
+</v-container>
 
 <% endblock %>

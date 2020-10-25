@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+    <!-- <link rel="stylesheet" href="/static/style.css" /> -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Vue.js のインポート -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>表情認識</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <% block content %><% endblock %>
+      <!--<v-app> </v-app>-->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+    <!-- app.py で Customize Directive -->
+    <!-- https://www.subarunari.com/entry/2017/09/30/003944 -->
+    
+    <script>
+      // import axios from 'axios';
+
+    new Vue({
+        el: '#app',
+        data: function () {
+          return {
+            message: '',
+            emotion: '',
+            response: '',
+            bad: 0,
+            happy: 0,
+          };
+        },
+        methods: {
+          /*startCamera: function() {
+            const path = `/start-camera`
+            axios.get(path)
+            .then(response => {
+              console.log(response)
+            })
+            .catch(error => {
+              console.log(error)
+            })
+          },*/
+          startCamera: function () {
+            fetch('/start-camera', {
+              mode: 'cors',
+              credentials: 'include'
+            })
+              .then((response) => {
+                console.log(response);
+                this.message = response.message;
+              })
+              .catch((err) => console.log(err));
+          },
+          predEmotion: function () {
+            fetch('/pred-emotion')
+              .then(
+                  response => {
+                      console.log(response)
+                      this.bad=response.bad
+                      this.happy=response.happy
+                    },
+                  location.href="/pred-emotion",
+                  //this.decideEmotion(),
+                )
+              .catch(err => console.log(err));
+          },
+          
+          decideEmotion: function(){
+              console.log("decide")
+              console.log(this.happy)
+              this.good = (this.happy + this.neutral) / 2;
+              this.normal = this.neutral;
+              this.bad = (this.angry + this.sad + this.disgust) / 3;
+              console.log(this.good)
+            tmp = [
+                {"good": this.good},
+                {"normal":this.normal},
+                {"bad":this.bad}
+            ];
+            console.log(tmp[0])
+            maxEmotionVal = 0;
+            maxEmotion = "";
+            tmp.forEach(elm => {
+                Object.keys(elm).forEach(key => {
+                    if(elm[key] > maxEmotionVal){
+                        maxEmotion = key
+                    }
+                })
+            })
+            this.emotion = maxEmotion
+            console.log(maxEmotion)
+            console.log(this.emotion)
+          }
+        },
+      });
+    </script>
+  </body>
+</html>
