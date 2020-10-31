@@ -10,11 +10,10 @@ import cv2
 import matplotlib.pyplot as plt
 from tensorflow.keras.preprocessing.image import load_img
 from tensorflow.keras.models import load_model
-from datetime import datetime # 井伊追加 filepathのタイムスタンプ取得のため
-from PIL import Image # 画像の読み書きをするライブラリー pillow # 井伊追加
+from datetime import datetime
+from PIL import Image
 
 
-# app = Flask(__name__, static_url_path='/static')
 app = Flask(__name__)
 app.config.from_object(__name__)
 
