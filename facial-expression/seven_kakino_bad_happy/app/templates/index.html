@@ -13,36 +13,72 @@
   </v-card>
 
   <% if filepath %>
-  <img src="./images/<< filepath >>"></img>
-  <p><< filepath >></p>
+    <img src="./images/<< filepath >>"></img>
+    <p><< filepath >></p>
   <% endif %>
 
   <% if predict %>
-  <v-card>
-    <v-card-text>
-        <v-list>
-            <v-list-item>
-                <v-list-item-content>良くない</v-list-item-content>
-                <v-list-item-content class="align-end"><< predict.bad >></v-list-item-content>
-            </v-list-item>
-            <v-list-item>
-                <v-list-item-content>良い</v-list-item-content>
-                <v-list-item-content class="align-end"><< predict.happy >></v-list-item-content>
-            </v-list-item>
-        </v-list>
-    </v-card-text>
-    <v-card-title>
-      <p v-if="<< predict.bad >> > <<predict.happy>>">
-        大丈夫、やればできる！怪我や事故には気をつけて！
-      </p>
-      <p v-if="<< predict.bad >> < <<predict.happy>>">
-        ウキウキですね！油断大敵、今日も頑張りましょう！
-      </p>
-    </v-card-title>
-    <v-card-actions>
-      <v-btn>体調を保存</v-btn>
-    </v-card-actions>
-  </v-card>
+    <v-card>
+      <v-card-text>
+          <v-list>
+              <v-list-item>
+                  <v-list-item-content>良くない</v-list-item-content>
+                  <v-list-item-content class="align-end"><< predict.bad >></v-list-item-content>
+              </v-list-item>
+              <v-list-item>
+                  <v-list-item-content>良い</v-list-item-content>
+                  <v-list-item-content class="align-end"><< predict.happy >></v-list-item-content>
+              </v-list-item>
+          </v-list>
+      </v-card-text>
+      <v-card-title>
+        <p v-if="<< predict.bad >> > <<predict.happy>>">
+          大丈夫、やればできる！怪我や事故には気をつけて！
+        </p>
+        <p v-if="<< predict.bad >> < <<predict.happy>>">
+          ウキウキですね！油断大敵、今日も頑張りましょう！
+        </p>
+      </v-card-title>
+    </v-card>
+  <% endif %>
+
+  <% if results %>
+    <!-- app.py から送られてきた animalリストをVue.jsで使用 -->
+    <!-- https://ymgsapo.com/2019/10/12/pass-value-template/ -->
+    <script>
+      var d = eval({{result|tojson}})
+      Vue.component('fuga', {
+          template: '#fuga-template',
+          data:function(){ return {results: d }; }
+      });
+    </script>
+    <!-- 配列の中身をすべて表示するために、v-forディレクティブを使用 -->
+    <v-card>
+      <v-card-title>結果一覧</v-card-title>
+      <v-card-text>
+        <p v-for="result in results" class="list-group-item">
+          << result >>
+        </p>
+
+        <table border="1" align="center" width=600>
+          <tr>
+              <th>id</th>
+              <th>filepath</th>
+              <th>bad</th>
+              <th>happy</th>
+          </tr>
+          <% for result in results %>
+          <tr>
+              <td><< result.id >></td>
+              <td><< result.filepath >></td>
+              <td><< result.bad >></td>
+              <td><< result.happy >></td>
+          </tr>
+          <% endfor %>
+        </table>
+      </v-card-text>
+    </v-card>
+
   <% endif %>
 </v-container>
 

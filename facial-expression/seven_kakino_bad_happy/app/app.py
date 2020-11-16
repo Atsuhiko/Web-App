@@ -6,6 +6,7 @@ import random
 from flask import Flask, make_response,render_template, request, redirect, url_for, send_from_directory, g, flash, jsonify
 from keras.preprocessing.image import load_img
 import numpy as np
+import sqlite3
 import cv2
 import matplotlib.pyplot as plt
 from tensorflow.keras.preprocessing.image import load_img
@@ -14,27 +15,33 @@ from datetime import datetime
 from PIL import Image
 
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, String #DBのテーブルの型をインポート
+from sqlalchemy import Column, Integer, Float, String #DBのテーブルの型をインポート
 
+# DBインストール
+import db
 
 app = Flask(__name__)
 app.config.from_object(__name__)
 
-"""
-# DB接続用
-app.config['SECRET_KEY']='secret key'
-app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///flask.sqlite' # DBへのパス
 
-# SQLiteのDBテーブル情報
-class Result(db.Model):
-    # __tablename__='Result'
-    id = db.Column(Integer, primary_key=True)
-    bad = db.Column(float)
-    happy = db.Column(float)
+app.config.update(dict(
+    DATABASE=os.path.join(app.root_path, 'db.sqlite3'),
+    SECRET_KEY='foo-baa',
+))
 
-# DB作成
-db.create_all()
-"""
+def connect_db():
+    # データベス接続に接続します
+    con = sqlite3.connect(app.config['DATABASE'])
+    con.row_factory = sqlite3.Row
+    return con
+
+
+def get_db():
+    # connectionを取得します
+    if not hasattr(g, 'sqlite_db'):
+        g.sqlite_db = connect_db()
+    return g.sqlite_db
+
 
 
 
@@ -146,26 +153,26 @@ def pred_emotion():
     save_path = os.path.join(SAVE_DIR, filepath)  # パスとファイル名を連結
     img.save(save_path) # 画像を保存
 
+    con = get_db()
+    pk = db.insert(con, filepath, bad, happy)
+
+    # DBの中身を全件取得
+    results = db.select_all(con)
 
     # フロントエンドに判別の結果を返す
     return render_template(
         "index.html",
         predict = response,
-        filepath = filepath
+        filepath = filepath,
+        results = results
     )
 
-@app.route('/save-emotion', mothods=['POST'])
-def save_emotion():
-    if request.method =='POST':
-        bad = request.form['bad']
-        happy = request.form['happy']
-        data = Result(bad=bad, happy=happy)
-        db.session.add(data)
-        db.seddion.commit()
-        db.session.close()
-        Result_info = db.session.query(Result.id, Result.bad, Result.happy).all()
-        return render_template('index.html', Result_info=Result_info)
 
+# 終了したとき db 接続を close する
+@app.teardown_appcontext
+def close_db(error):
+    if hasattr(g, 'sqlite_db'):
+        g.sqlite_db.close()
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=3032)  # ポートの変更

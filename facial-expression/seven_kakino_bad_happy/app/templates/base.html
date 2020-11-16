@@ -33,8 +33,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
-    <!-- app.py で Customize Directive -->
-    <!-- https://www.subarunari.com/entry/2017/09/30/003944 -->
 
     <script>
     new Vue({
@@ -72,23 +70,7 @@
                 )
               .catch(err => console.log(err));
           },
-          saveEmotion: function() {
-            const param = {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json; charset=utf-8"
-              },
-              body: JSON.stringify(predict.bad, predict.happy)
-            }
-            fetch('/save-emotion', param)
-              .then(
-                response => {
-                  console.log(response)
-                },
-              )
-              .catch(err => console.log(err));
-          }
-        },
+        }
       });
     </script>
   </body>
