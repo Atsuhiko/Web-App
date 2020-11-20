@@ -14,8 +14,6 @@ from tensorflow.keras.models import load_model
 from datetime import datetime
 from PIL import Image
 
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, Float, String #DBのテーブルの型をインポート
 
 # DBインストール
 import db
@@ -30,16 +28,16 @@ app.config.update(dict(
 ))
 
 def connect_db():
-    # データベス接続に接続します
-    con = sqlite3.connect(app.config['DATABASE'])
-    con.row_factory = sqlite3.Row
+    # 引数で指定したデータベースに接続
+    con = sqlite3.connect(app.config['DATABASE']) # 接続。なければDB作成
+    con.row_factory = sqlite3.Row # select結果をカラム指定で取得できるようにする
     return con
 
 
 def get_db():
     # connectionを取得します
-    if not hasattr(g, 'sqlite_db'):
-        g.sqlite_db = connect_db()
+    if not hasattr(g, 'sqlite_db'):  # gにコネクションが格納されていない場合
+        g.sqlite_db = connect_db() # コネクションを新規作成してグローバル変数gに格納
     return g.sqlite_db
 
 
@@ -121,6 +119,7 @@ def pred_emotion():
 
     # 画像をnumpy配列に変換
     img = np.asarray(img)
+    # グレースケール
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     img_gray = img_gray.reshape(-1, 48, 48, 1) / 255.0
     # numpy配列の変形 -1：1列データ　48,48：縦横　1:要素１つ

@@ -3,29 +3,26 @@ import sqlite3
 from flask import Flask, request, g, redirect, url_for, render_template, flash
 
 
+# SELECTする
 def select_all(con):
-    """ SELECTする """
     cur = con.execute('select id, filepath, bad, happy, created from results order by id desc')
-    return cur.fetchall()
+    return cur.fetchall() # クエリ実行結果をすべて取得
 
-
+# 指定したキーのデータをSELECTする
 def select(con, pk):
-    """ 指定したキーのデータをSELECTする """
     cur = con.execute('select id, filepath, bad, happy, created from results where id=?', (pk,))
-    return cur.fetchone()
+    return cur.fetchone() # クエリ実行結果を一行取得
 
-
+# INSERTする
 def insert(con, filepath, bad, happy):
-    """ INSERTする """
-    cur = con.cursor()
+    cur = con.cursor() # カーソルオブジェクト
     cur.execute('insert into results (filepath, bad, happy) values (?, ?, ?)', [filepath, bad, happy])
-    pk = cur.lastrowid
-    con.commit()
+    pk = cur.lastrowid # 最後似登録した行を取得
+    con.commit() # 変更の反映
     return pk
 
-
+# 指定したキーのデータをDELETEする
 def delete(con, pk):
-    """ 指定したキーのデータをDELETEする """
-    cur = con.cursor()
+    cur = con.cursor() # カーソルオブジェクト
     cur.execute('delete from results where id=?', (pk,))
-    con.commit()
+    con.commit() # 変更の反映
