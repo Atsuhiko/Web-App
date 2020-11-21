@@ -1,7 +1,7 @@
 <% extends "base.html" %> <% block content %>
 <v-container>
   <v-card>
-    <v-card-title>1日の始まり！表情分析</v-card-title>
+    <v-card-title class="font-weight-bold">1日の始まり！表情分析</v-card-title>
     <v-card-text>
       <v-btn v-on:click="startCamera">カメラを起動</v-btn>
       カメラで撮影し、分析する顔を更新することが出来ます。
@@ -13,8 +13,12 @@
   </v-card>
 
   <% if filepath %>
-    <img src="./images/<< filepath >>"></img>
-    <p><< filepath >></p>
+  <v-card height="300px" width="500px">
+    <v-card-text height="300px">
+      <v-img height="100%" width="100%" src="./images/<< filepath >>"></v-img>
+      <p><< filepath >></p>
+    </v-card-text>
+  </v-card>
   <% endif %>
 
   <% if predict %>
