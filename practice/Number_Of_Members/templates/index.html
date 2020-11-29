@@ -9,24 +9,6 @@
 
 <form action = "./" method = "POST" enctype = "multipart/form-data">
     <input type="file" name="csv" accept="csv">
-    <p>グラフの種類
-        <div>
-            <input type="radio" name="kind" id="r4" value="other" checked="checked">
-            <label for="r4">下から選択してください</label>
-        </div>
-        <div>
-            <input type="radio" name="kind" id="r1" value="pairplot">
-            <label for="r1">pairplot</label>
-        </div>
-        <div>
-            <input type="radio" name="kind" id="r2" value="lmplot">
-            <label for="r2">lmplot</label>
-        </div>
-        <div>
-            <input type="radio" name="kind" id="r3" value="2plots">
-            <label for="r3">pairplot & lmplot</label>
-        </div>
-    </p>
     <input type = "submit" value="送信">
 </form>
 <form action="" method="POST"></form>
@@ -38,32 +20,16 @@
 <hr>
 {% endif %}
 
-{% if err_message_2 %}
-<hr>
-<center><font size="6" color=red><b>{{ err_message_2 }}</b></font></center>
-<hr>
-{% endif %}
 
-{% if filepath_1 %}
+{% if filepath %}
 <center>
 <hr>
 <font size="3">{{ csv }}</font>
 <hr>
 <font size="6">sns pairplot<br></font>
-<img src="{{ filepath_1 }}" style="margin-top: 10px; vertical-align: bottom; width: 700px"><br>
+<img src="{{ filepath }}" style="margin-top: 10px; vertical-align: bottom; width: 700px"><br>
 <hr>
 </center>
-{% endif %}
-
-{% if filepath_2 %}
-<center>
-<hr>
-<font size="3">{{ csv }}</font>
-<hr>
-<font size="6">sns lmplot<br></font>
-<img src="{{ filepath_2 }}" style="margin-top: 10px; vertical-align: bottom; width: 700px"><br>
-<hr>
-
 {% endif %}
 
 {% endblock %}
