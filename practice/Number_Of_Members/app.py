@@ -25,7 +25,6 @@ def upload_file():
         return render_template("index.html")
 
     if request.method == "POST":
-
         # csv ファイルを DataFrame に読み込み
         csv = request.files['csv']
         if csv:
@@ -33,30 +32,18 @@ def upload_file():
         else: # エラー処理
             return render_template("index.html", err_message_1="ファイルを選択してください！")
 
-        """kind = request.form.get('kind')
-        if kind:
-            if kind == "other":
-                return render_template("index.html", err_message_2="グラフの種類を選択してください！")
-            else:
-            # sns で描画
-                sns_plot_1 = sns.pairplot(df, hue ="label")
-                sns_plot_2 = sns.lmplot(x="a1", y="a4", data=df, hue="label")
+        # sns で描画
+        # sns.set_style('whitegrid') # グラフの背景設定（白、グリッドあり）
+        line_plot = sns.lineplot(x=df['日付'], y=df['メンバー合計数'])
+        # line_plot = sns.lineplot(x="日付", y="メンバー合計数", data=df)
+        fig = line_plot.get_figure()
+        # グラフ画像を保存
+        filepath = "./graph/" + datetime.now().strftime("%Y%m%d%H%M%S_") + "graph.png"
+        fig.savefig(filepath)
+        plt.close()
 
-                # グラフ画像を保存
-                filepath_1 = "./graph/" + datetime.now().strftime("%Y%m%d%H%M%S_") + "graph1.png"
-                filepath_2 = "./graph/" + datetime.now().strftime("%Y%m%d%H%M%S_") + "graph2.png"
-                sns_plot_1.savefig(filepath_1)
-                sns_plot_2.savefig(filepath_2)
+        return render_template("index.html", csv=csv, filepath=filepath)
 
-                if kind == "pairplot":
-                    return render_template("index.html", csv=csv, filepath_1=filepath_1)
-                elif kind == "lmplot" :
-                    return render_template("index.html", csv=csv, filepath_2=filepath_2)
-                elif kind == "2plots" :
-                    return render_template("index.html", csv=csv, filepath_1=filepath_1, filepath_2=filepath_2)
-                """
-        else: # エラー処理
-            return render_template("index.html", err_message_2="グラフの種類を選択してください！")
 
 if __name__ == '__main__':
     app.run(debug=True,  host='0.0.0.0', port=5554) # ポートの変更
