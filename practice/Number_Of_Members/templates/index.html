@@ -3,12 +3,19 @@
 
 <div style="text-align:center;">
 <font size="5">
-ファイルとグラフの種類を選択して送信してください
+ファイルを選択して送信してください
 </font>
 <hr>
 
 <form action = "./" method = "POST" enctype = "multipart/form-data">
-    <input type="file" name="csv" accept="csv">
+    <label>csv: </label>
+    <input type="file" name="csv" accept="csv"><br><br>
+    <label>year: </label>
+    <input class="form-control" type="text" size="10" name="year" value="2020"><br><br>
+    <label>month: </label>
+    <input class="form-control" type="text" size="10" name="month" value="10"><br><br>
+    <input type="radio" name="whole">
+    <label>whole_period</label><br><br>
     <input type = "submit" value="送信">
 </form>
 <form action="" method="POST"></form>
@@ -26,7 +33,7 @@
 <hr>
 <font size="3">{{ csv }}</font>
 <hr>
-<font size="6">sns pairplot<br></font>
+<font size="6">異業種データサイエンス研究会　メンバー合計数<br></font>
 <img src="{{ filepath }}" style="margin-top: 10px; vertical-align: bottom; width: 700px"><br>
 <hr>
 </center>

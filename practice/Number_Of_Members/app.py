@@ -32,6 +32,15 @@ def upload_file():
         else: # エラー処理
             return render_template("index.html", err_message_1="ファイルを選択してください！")
 
+        whole = request.form.get('whole')
+        if whole:
+            df = df
+        else:
+            year = request.form.get('year')
+            month = request.form.get('month')
+            condition = "year==" + year + " & month==" + month
+            df = df.query(condition)
+
         # sns で描画
         # sns.set_style('whitegrid') # グラフの背景設定（白、グリッドあり）
         line_plot = sns.lineplot(x=df['日付'], y=df['メンバー合計数'])
