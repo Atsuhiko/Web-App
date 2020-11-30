@@ -43,7 +43,7 @@ def upload_file():
 
         # sns で描画
         # sns.set_style('whitegrid') # グラフの背景設定（白、グリッドあり）
-        line_plot = sns.lineplot(x=df['日付'], y=df['メンバー合計数'])
+        line_plot = sns.lineplot(x=df['date'], y=df['number_of_member'])
         # line_plot = sns.lineplot(x="日付", y="メンバー合計数", data=df)
         fig = line_plot.get_figure()
         # グラフ画像を保存
