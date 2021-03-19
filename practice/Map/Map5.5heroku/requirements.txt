@@ -2,7 +2,7 @@ absl-py==0.9.0
 asgiref==3.2.7
 astor==0.8.1
 click==7.1.2
-Django==3.0.6
+Django==3.1.6
 Flask==1.1.2
 funicorn==1.0.6
 gunicorn==20.0.4
